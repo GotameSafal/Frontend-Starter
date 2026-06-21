@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Enterprise Next.js 16 Starter Platform
+
+Production-ready, highly extensible boilerplate equipped with a custom HeroUI abstraction layer, dynamic forms generator, URL synced enterprise table system, S3/Cloudinary upload adaptor interface, and custom middleware authorization filters.
+
+## Core Stack
+- **Framework**: Next.js 16 (App Router, Server Components)
+- **Styling**: Tailwind CSS + Custom HSL variable themes
+- **UI Abstraction**: HeroUI wrapping wrappers under `src/components/ui/`
+- **Forms**: React Hook Form + Zod automatic validations
+- **Tables**: TanStack Table with automatic search parameters synchronization
+- **Queries**: TanStack Query
+- **State**: Zustand client state store
+
+---
+
+## Folder Structure
+
+```
+src/
+ ├── app/              # Next.js pages & router layouts
+ ├── features/         # Domain business features (e.g., users)
+ │    ├── components/
+ │    ├── hooks/
+ │    ├── schemas/
+ │    └── services/
+ ├── components/       # Cross-cutting reusable items
+ │    ├── ui/          # Generic HeroUI wrappers (Button, Input, Select, Modal, etc.)
+ │    ├── forms/       # DynamicForm engine
+ │    └── table/       # MasterTable component
+ ├── lib/              # Core API configurations, auth store, uploads
+ └── hooks/            # Global custom React hooks
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
+1. Install all dependencies:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. Copy the sample environment configurations:
+   ```bash
+   cp .env.example .env.local
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Launch development workspace:
+   ```bash
+   npm run dev
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Creating Domain Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To create a new domain feature, encapsulate everything inside a single feature namespace directory inside `src/features/` matching the target resource pattern.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For example, to create a `products` feature:
+1. Define validations and interfaces in `src/features/products/schemas/index.ts`
+2. Create API endpoint queries in `src/features/products/services/index.ts`
+3. Implement customized components and hooks locally within the feature folders.
